@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <meta name="msapplication-TileColor" content="#1F6383">
+    <meta name="theme-color" content="#1F6383">
+
+    <link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+
+    <!-- <script type="text/javascript" src="/js/main.js"></script> -->
+
+    <title>Missouri Tourism | Register Road Show</title>
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>Road Show Registration</h1>
+      </header>
+      <main>
+        <div class="event row">
+          <div class="col">
+            <h2>Central Missouri Road Show</h2>
+
+            <div class="location">
+              <div>March 13, 2020</div>
+              <div>Lake of the Ozarks</div>
+              <div>8:00 a.m.</div>
+              <div>Inn at Grand Glaize</div>
+            </div>
+
+            <div class="cost">
+              <h4>Registration</h4>
+              <p>$20</p>
+            </div>
+
+            <a href="/">Back to all meetings</a>
+          </div>
+
+          <div class="col">
+            <img src="../images/road-show-logo.png" alt="Missouri Road Show Logo" />
+          </div>
+        </div>
+        
+        <form name="registration-form" action="submitRegistration">
+          <div class="description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et. Aenean eu enim justo. Vestibulum aliquam hendrerit molestie. Mauris malesuada nisi sit amet augue accumsan tincidunt. Maecenas tincidunt, velit ac porttitor pulvinar, tortor eros facilisis libero, vitae commodo nunc quam et ligula. Ut nec ipsum sapien. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer id nisi nec nulla luctus lacinia non eu turpis. Etiam in ex imperdiet justo tincidunt egestas. Ut porttitor urna ac augue cursus tincidunt sit amet sed orci.
+          </div>
+
+          <div>*Required Field</div>
+          
+          <h2>Attendee Information</h2>
+
+          <fieldset>
+            <legend>Personal Information</legend>
+            
+            <label for="given-name">First Name*</label>
+            <input id="given-name" type="text" required />
+
+            <label for="email">Email*</label>
+            <input id="email" type="email" required />
+          </fieldset>
+
+          <fieldset>
+            <legend>Company Information</legend>
+            
+            <label for="title">Title*</label>
+            <input id="title" type="text" required />
+
+            <label for="company">Company*</label>
+            <input id="company" type="text" required />
+          </fieldset>
+
+          <fieldset>
+            <legend>Address</legend>
+            
+            <label for="address1">Address Line 1*</label>
+            <input id="address1" type="text" required />
+
+            <label for="address2">Address Line 2</label>
+            <input id="address2" type="text" required />
+
+            <label for="city">City*</label>
+            <input id="city" type="text" required />
+
+            <label for="state">State*</label>
+            <select id="state">
+              <options value="Tennessee">TN</options>
+            </select>
+
+            <label for="zip">Zip*</label>
+            <input id="zip" type="number" pattern="(\d{5}([\-]\d{4})?)" required />
+          </fieldset>
+
+          <fieldset>
+            <legend>Payment Method</legend>
+
+            <label>Payment Method*</label>
+
+            <div>Credit card purchases will be directed to an external site to complete checkout. Attendees paying by check will be emailed an invoice and payment will be required prior to attendance. For questions or assistance, please contact <a href="mailto: tourism@ded.mo.gov">tourism@ded.mo.gov</a> or call <a href="tel: 573-751-4133">573-751-4133</a>.</div>
+
+            <input id="creditcard" type="radio" name="payment" />
+            <label for="creditcard">Credit Card</label>
+
+            <input id="invoice" type="radio" name="payment" />
+            <label for="invoice">Invoice</label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Submit</legend>
+
+            <button type="submit">Submit</button>
+          </fieldset>
+        </form>
+      </main> 
+    </div>
+  </body>
+</html>
