@@ -1,0 +1,110 @@
+.event {
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+    border-top: 4px $accent-green solid;
+    // border-style: solid;
+    h4 {
+        margin: 1rem 0;
+    }
+    
+    &--card {
+        background-color: $white;
+        display: flex;
+        flex-direction: column;
+        @media (min-width: 600px) {
+            flex-direction: row;
+        }
+
+        &__bottom {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            @media (min-width: 600px) {
+                flex-direction: row;
+                padding-top: 0;
+                padding-right: 0;
+                padding-bottom: 0;
+                justify-content: space-between;
+                flex-grow: 1;
+            }
+        }
+    }
+
+    &--map {
+        background-image: url('../images/map.png');
+        background-position: center center;
+        background-size: cover;
+        height: 10rem;
+        width: 100%;
+        @media (min-width: 600px) {
+            max-width: 12.2rem;
+            height: 10.8rem;
+        }
+    }
+
+    &--day {
+        background-color: $accent-blue;
+        color: $white;
+        @include bold;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-content: center;
+        width: 4.33rem;
+        height: 4.33rem;
+        &__day {
+            font-size: 2.3rem;
+            line-height: 1;
+        }
+    }
+
+    &--register {
+        @media (min-width: 600px) {
+            padding: 1rem;
+        }
+
+        .region {
+            @include medium;
+            line-height: 1;
+        }
+        .locationName {
+            @include bold;
+            line-height: 1;
+            font-size: 1.33rem;
+        }
+        .time {
+            @include light;
+            padding: .8rem 0;
+        }
+        .btn {
+            @include bold;
+            padding: .267rem .733rem;
+            padding-right: .267rem .733rem;
+            color: $white;
+            background-color: $accent-green;
+            display: inline-block;
+            text-transform: uppercase;
+        }
+    }
+
+    &--address {
+        font-size: 1rem;
+
+        @media (min-width: 600px) {
+            font-size: .8rem;
+            background-color: $address-back;
+            padding: 1rem;
+        }
+        &__name {
+            @include medium;
+            padding: 2rem 0 1rem;
+
+            @media (min-width: 600px) {
+                padding: 0;
+            }
+        }
+        .address {
+            @include light;
+        }
+    }
+}
