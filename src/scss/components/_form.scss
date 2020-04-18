@@ -1,0 +1,142 @@
+form {
+  background-color: $white;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+
+  .required {
+    color: $font-gray;
+    margin-top: 1.66rem;
+    margin-bottom: 1.66rem;
+  }
+
+  fieldset {
+    color: $font-gray;
+    border: none;
+    padding: 0;
+  }
+
+  legend {
+    position: absolute;
+    left: -1000px;
+  }
+
+  .floatLabel {
+    &--wrap {
+      position: relative;
+      box-sizing: content-box;
+    }
+    &--input {
+      border-width: 0;
+      color: $font-gray;
+      outline: 0;
+      @include light();
+      @include montserrat();
+      border-bottom: 1px solid $font-gray;
+      background-color: transparent;
+      width: 100%;
+
+      &,
+      & + .floating-label {
+        line-height: 1;
+        font: inherit;
+        height: 1.8rem;
+        padding: 1rem 0 0;
+      }
+
+      &.select {
+        box-sizing: content-box;
+      }
+
+      & + .floating-label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        user-select: none;
+        transition: transform 0.25s, opacity 0.25s ease-in-out;
+        transform-origin: 0 0;
+      }
+
+      &:focus,
+      &:not(:placeholder-shown) {
+        border-bottom: 2px solid $accent-green;
+        outline: 0;
+        box-shadow: none;
+        & + .floating-label {
+          transform: translate(1%, -17%) scale(0.667);
+          color: $accent-green;
+          @include bold();
+        }
+      }
+
+      // &:focus,
+      // &:not(.select):not(:placeholder-shown),
+      // &.select:focus {
+      //   border-bottom: 2px solid $accent-green;;
+      //   outline: 0;
+      //   box-shadow: none;
+      //   & + .floating-label {
+      //     transform: translate(1%, -17%) scale(.667);
+      //     color: $accent-green;
+      //     @include bold();
+      //   }
+      // }
+
+      // &.select {
+      //   option:checked {
+      //   // & + .floating-label {
+      //     transform: translate(1%, -17%) scale(.667);
+      //     color: $font-gray;
+      //     @include bold();
+      //   // }
+      // }
+
+      &:valid {
+        border-bottom: 1px solid $font-gray;
+        & + .floating-label {
+          color: $font-gray;
+        }
+
+        &:focus {
+          border-bottom: 2px solid $accent-green;
+          outline: 0;
+          box-shadow: none;
+          & + .floating-label {
+            color: $accent-green;
+          }
+        }
+      }
+
+      &:invalid {
+        &:not(:placeholder-shown) {
+          border-color: #ff4757;
+        }
+      }
+      &::placeholder {
+        color: transparent;
+      }
+    }
+  }
+
+  .disclaimer {
+    color: #000;
+    font-size: 0.867rem;
+    line-height: 1;
+    margin: 0.5rem 0rem 1rem 2rem;
+    a {
+      text-decoration: none;
+    }
+  }
+
+  fieldset.payment {
+    margin-top: 1rem;
+  }
+
+  .paymentGroup {
+    margin-left: 2rem;
+    &:last-of-type {
+      margin-bottom: 2rem;
+    }
+  }
+}
