@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/images/favicon/site.webmanifest">
+    <link rel="mask-icon" href=/images/favicon/safari-pinned-tab.svg" color="#1F6383">
     <meta name="msapplication-TileColor" content="#1F6383">
-    <meta name="theme-color" content="#1F6383">
+    <meta name="theme-color" content="#ffffff">
+
 
     <link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
@@ -16,18 +22,18 @@
     <title>Missouri Tourism | Road Show</title>
   </head>
   <body>
-    <div id="app">
+    <div id="app" class="page-home">
       <header>
         <h1>2020 Regional Tourism Meetings</h1>
       </header>
       <main>
-        <div class="hero-content">
+        <div class="hero hero-content">
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et. Aenean eu enim justo. Vestibulum aliquam hendrerit molestie. Mauris malesuada nisi sit amet augue accumsan tincidunt. Maecenas tincidunt, velit ac porttitor pulvinar, tortor eros facilisis libero, vitae commodo nunc quam et ligula. Ut nec ipsum sapien. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
 
           <p>Integer id nisi nec nulla luctus lacinia non eu turpis. Etiam in ex imperdiet justo tincidunt egestas. Ut porttitor urna ac augue cursus tincidunt sit amet sed orci. Aenean eu enim justo. Vestibulum aliquam hendrerit molestie. Mauris malesuada nisi sit amet augue accumsan tincidunt. 
           </p>
           
-          <a href="">See Agenda ></a>
+          <a href="" class="hero--cta__link">See Agenda ></a>
         </div>
 
         <div class="who">
@@ -49,34 +55,42 @@
           <h2>When And Where</h2>
           <p>Aenean eu enim justo. Vestibulum aliquam hendrerit molestie. Mauris malesuada nisi sit amet augue accumsan tincidunt. Aenean eu enim justo. Vestibulum aliquam hendrerit molestie.</p>
 
-          <img src="../images/road-show-logo.png" alt="Missouri Road Show Logo" />
+          <!-- <div class="img--con"> -->
+            <img src="../images/road-show-logo.png" class="road-show-logo" alt="Missouri Road Show Logo" />
+          <!-- </div> -->
 
-          <p class="semi-bold">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et. Aenean eu enim justo. Vestibulum aliquam</p>
+          <p class="semibold">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et. Aenean eu enim justo. Vestibulum aliquam</p>
         </div>
 
         <div class="where">
-          <div class="location">
-            <h4>March 13, 2020</h4>
-            <div class="map">
-              <div class="date">
-                Mar 13
+          <div class="event">
+            <h4 class="event--date">March 13, 2020</h4>
+            <div class="event--card">
+              <div class="event--map">
+                <div class="event--day">
+                  <!-- <div class="event--day__month">Mar</div>  -->
+                  <!-- <div class="event--day__day">13</div> -->
+                  Mar <div class="event--day__day">13</div>
+                </div>
               </div>
-            </div>
-
-            <div class="register-block">
-              <div class="region">Central Missouri</div>
-              <div class="location--name">Lake of the Ozarks</div>
-              <div class="time">8:00 a.m.</div>
               
-              <a href="btn">Register</a>
-            </div>
-            
-            <div class="location--address">
-              <div class="location--address__name">Inn at Grand Glaize</div>
+              <div class="event--card__bottom">
+                <div class="event--register">
+                  <div class="region">Central Missouri</div>
+                  <div class="locationName">Lake of the Ozarks</div>
+                  <div class="time">8:00 a.m.</div>
+                  
+                  <a class="btn" href="btn">Register</a>
+                </div>
+                
+                <div class="event--address">
+                  <div class="event--address__name">Inn at Grand Glaize</div>
 
-              <div class="address">
-                <div class="address address--lineOne">5142 Osage Beach Pkwy</div>
-                <div class="address address--lineTwo">Osage Beach, MO</div>
+                  <div class="address">
+                    <div class="address-lineOne">5142 Osage Beach Pkwy</div>
+                    <div class="address-lineTwo">Osage Beach, MO</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
