@@ -31,5 +31,7 @@
     "gulp-sourcemaps": "^2.6.5",
     "jest": "^25.3.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0"
+  }
 }
