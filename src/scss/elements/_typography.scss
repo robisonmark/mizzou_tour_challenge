@@ -1,11 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;500;600;700&display=swap');
 
+// Typography Mixins
 @mixin bebas {
     font-family: 'Bebas Neue', cursive;
 }
 
 @mixin montserrat {
     font-family: 'Montserrat', sans-serif;
+}
+
+@mixin light {
+	font-weight: 300;
+}
+
+@mixin medium {
+	font-weight: 500;
+}
+
+@mixin semibold {
+	font-weight: 600;
+}
+
+@mixin bold {
+	font-weight: 700;
 }
 
 // Global Typography
@@ -17,6 +34,7 @@ html {
 	
 	font-size: calc( ((100vw - #{$min-vw}) / (#{strip-unit($max-vw)} - #{strip-unit($min-vw)}) * (#{strip-unit($max-fs)} - #{strip-unit($min-fs)})) + #{$min-fs} );
 	font-size: 15px;
+	color: $font-base;
 	@include montserrat;
     *, *:before, *:after {
 		transition: none 0.2s ease-in-out; // Default transition properties
@@ -54,14 +72,20 @@ h1, h2, h3, h4, h5, h6,
 }
 
 h1, .h1 {
-	font-size: 2.13rem; // = 41px / 15 (base rem size)
+	font-size: 2.3rem; // = 34px / 15 (base rem size)
 	@media (min-width: 600px) {
-		font-size:2.73rem;
+		font-size:2.73rem; // = 41px / 15 (base rem size)
 	}
 }
 
 h2, .h2 {
-    font-size: 2rem; // = 30px / 15 (base rem size)
+	font-size: 2rem; // = 30px / 15 (base rem size)
+	margin-bottom: 1rem;
+}
+
+h4, .h4 {
+	font-size: 1.2rem;
+	@include montserrat();
 }
 
 p {
@@ -75,17 +99,35 @@ p {
 }
 
 a, [role="link"] {
-    text-decoration: none;
+    color: $accent-green;
 	cursor: pointer;
 	@include montserrat;
+
+	&.return {
+		font-size: .8667rem;
+	}
 }
 
 li {
 	@include montserrat;
 	font-weight: 300;
 	list-style-type: none;
+	list-style-position: inside;
+	&:before {
+		content: '•';
+		display: inline-block;
+		margin-right: 3rem;
+		// this is the way it looks through Adobe XD
+		@media (max-width: 600px) {
+			margin-left: 2rem;
+		}
+	}
 }
 
-.semi-bold {
+.light {
+	font-weight: 300;
+}
+
+.semibold {
 	font-weight: 600;
 }

@@ -9,11 +9,139 @@
     }
 }
 
-img {
-    max-width: 100%;
+img,
+.img--con {
+    // max-width: 100%;
+    // position: relative;
+    // img {
+    //     width: 100%;
+    // }
+    &.road-show-logo{
+        // padding: 2rem;
+        width: calc(100% - 2rem);
+        max-width: 24rem;
+        display: block;
+        .page-home & {
+            margin: 2.33rem auto;
+        }
+    }
+}
+
+.container {
+    width: 100%;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -1rem;
+    margin-left: -1rem;
+}
+
+.col {
     position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    @media (min-width: 600px) {
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+    }
 }
 
 form {
-    background-color: $white
+    background-color: $white;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding: 2rem 1rem;
+    
+    .required {
+        color: $font-gray;
+    }
+
+    fieldset {
+        color: $font-gray;
+        border: none;
+        padding: 0;
+    }
+
+    legend {
+        position: absolute;
+        left: -1000px;
+    }
+
+    .form-group {
+        display: block;
+        // position: relative;
+        .input--floatLabel {
+            border-width: 0;
+            color: $font-gray;
+            @include light();
+            @include montserrat();
+            border-bottom: 2px solid $font-gray;
+            background-color: transparent;
+            width: 100%;
+
+            &,
+            & + .floating-label {
+                line-height: 1;
+                font: inherit;
+                padding: 1.5em;
+                height: 4em;
+            }
+
+            & + .floating-label {
+                position: absolute;
+                top: 0;
+                left: 0;
+                user-select: none;
+            }
+
+            &,
+  & + .floating-label {
+    position: relative;
+  }
+
+              & + .floating-label {
+                transition: transform .25s, opacity .25s ease-in-out;
+                transform-origin: 0 0;
+                opacity: .5;
+              }
+
+              &:focus,
+  &:not(:placeholder-shown) {
+    border-color: rgba(white, .1);
+    & + .floating-label {
+      transform: translate(1%, -30%) scale(.8);
+      opacity: .25;
+    }
+  }
+
+  &:valid {
+    &:not(:placeholder-shown) {
+      border-color: rgba(#2ed573, .3);
+    }
+  }
+
+  &:invalid {
+    border-color: rgba(#ff4757, .3);
+  }
+        }
+
+        &:focus {
+            outline: 0;
+            box-shadow: 0;
+        }
+
+        &::placeholder {
+            color: transparent;
+        }
+
+    }
 }
