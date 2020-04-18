@@ -1,133 +1,164 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;500;600;700&display=swap");
 
 // Typography Mixins
 @mixin bebas {
-    font-family: 'Bebas Neue', cursive;
+  font-family: "Bebas Neue", cursive;
 }
 
 @mixin montserrat {
-    font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 @mixin light {
-	font-weight: 300;
+  font-weight: 300;
 }
 
 @mixin medium {
-	font-weight: 500;
+  font-weight: 500;
 }
 
 @mixin semibold {
-	font-weight: 600;
+  font-weight: 600;
 }
 
 @mixin bold {
-	font-weight: 700;
+  font-weight: 700;
 }
 
 // Global Typography
 html {
-	$min-fs: 15px; 
-	$max-fs: 18px;
-	$min-vw: 600px; // Minimum viewport width for dynamic font
-	$max-vw: 1240px; // Maximum viewport width for dynamic font
-	
-	font-size: calc( ((100vw - #{$min-vw}) / (#{strip-unit($max-vw)} - #{strip-unit($min-vw)}) * (#{strip-unit($max-fs)} - #{strip-unit($min-fs)})) + #{$min-fs} );
-	font-size: 15px;
-	color: $font-base;
-	@include montserrat;
-    *, *:before, *:after {
-		transition: none 0.2s ease-in-out; // Default transition properties
-	}
+  $min-fs: 15px;
+  $max-fs: 18px;
+  $min-vw: 600px; // Minimum viewport width for dynamic font
+  $max-vw: 1240px; // Maximum viewport width for dynamic font
+
+  font-size: calc(
+    (
+        (100vw - #{$min-vw}) / (#{strip-unit($max-vw)} - #{strip-unit($min-vw)}) *
+          (#{strip-unit($max-fs)} - #{strip-unit($min-fs)})
+      ) + #{$min-fs}
+  );
+  font-size: 15px;
+  color: $font-base;
+  @include montserrat;
+  *,
+  *:before,
+  *:after {
+    transition: none 0.2s ease-in-out; // Default transition properties
+  }
 }
 
 body {
-	line-height: 1.65;
-	text-rendering: optimizeLegibility;
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-font-smoothing: antialiased;
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
-	line-height: 1.33;
-	// margin-top: 1.25em;
-	// margin-bottom: 1em;
-	margin-top: 0;
-	margin-bottom: 0;
-	display: block;
-    @include bebas;
-    font-weight: 700;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  line-height: 1.33;
+  margin-top: 0;
+  margin-bottom: 0;
+  display: block;
+  @include bebas;
+  font-weight: 700;
 
-	&:first-child { margin-top: 0; }
-  	&:last-child { margin-bottom: 0; }
+  &:first-child {
+    margin-top: 0;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 @function fontSize($max-fs, $min-fs) {
-	$min-vw: 600px; // Minimum viewport width for dynamic font
-	$max-vw: 1240px; // Maximum viewport width for dynamic font
-	
-	$result: calc( ((100vw - #{$min-vw}) / (#{strip-unit($max-vw)} - #{strip-unit($min-vw)}) * (#{strip-unit($max-fs)} - #{strip-unit($min-fs)})) + #{$min-fs} );
-	@return $result;
+  $min-vw: 600px; // Minimum viewport width for dynamic font
+  $max-vw: 1240px; // Maximum viewport width for dynamic font
 
+  $result: calc(
+    (
+        (100vw - #{$min-vw}) / (#{strip-unit($max-vw)} - #{strip-unit($min-vw)}) *
+          (#{strip-unit($max-fs)} - #{strip-unit($min-fs)})
+      ) + #{$min-fs}
+  );
+  @return $result;
 }
 
-h1, .h1 {
-	font-size: 2.3rem; // = 34px / 15 (base rem size)
-	@media (min-width: 600px) {
-		font-size:2.73rem; // = 41px / 15 (base rem size)
-	}
+h1,
+.h1 {
+  font-size: 2.3rem; // = 34px / 15 (base rem size)
+  @media (min-width: 600px) {
+    font-size: 2.73rem; // = 41px / 15 (base rem size)
+  }
 }
 
-h2, .h2 {
-	font-size: 2rem; // = 30px / 15 (base rem size)
-	margin-bottom: 1rem;
+h2,
+.h2 {
+  font-size: 2rem; // = 30px / 15 (base rem size)
+  margin-bottom: 1rem;
 }
 
-h4, .h4 {
-	font-size: 1.2rem;
-	@include montserrat();
+h4,
+.h4 {
+  font-size: 1.2rem;
+  @include montserrat();
 }
 
 p {
-	margin-top: 0rem;
-	margin-bottom: 1rem;
-	font-weight: 300;
-	@include montserrat;
+  margin-top: 0rem;
+  margin-bottom: 1rem;
+  font-weight: 300;
+  @include montserrat;
 
-  &:first-child { margin-top: 0; }
-  &:last-child { margin-bottom: 0; }
+  &:first-child {
+    margin-top: 0;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
-a, [role="link"] {
-    color: $accent-green;
-	cursor: pointer;
-	@include montserrat;
+a,
+[role="link"] {
+  color: $accent-green;
+  cursor: pointer;
+  @include montserrat;
 
-	&.return {
-		font-size: .8667rem;
-	}
+  &.return {
+    font-size: 0.8667rem;
+  }
 }
 
 li {
-	@include montserrat;
-	font-weight: 300;
-	list-style-type: none;
-	list-style-position: inside;
-	&:before {
-		content: '•';
-		display: inline-block;
-		margin-right: 3rem;
-		// this is the way it looks through Adobe XD
-		@media (max-width: 600px) {
-			margin-left: 2rem;
-		}
-	}
+  @include montserrat;
+  font-weight: 300;
+  list-style-type: none;
+  list-style-position: inside;
+  &:before {
+    content: "•";
+    display: inline-block;
+    margin-right: 3rem;
+    // this is the way it looks through Adobe XD
+    @media (max-width: 600px) {
+      margin-left: 2rem;
+    }
+  }
 }
 
 .light {
-	font-weight: 300;
+  font-weight: 300;
 }
 
 .semibold {
-	font-weight: 600;
+  font-weight: 600;
 }

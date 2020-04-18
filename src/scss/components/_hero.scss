@@ -1,32 +1,36 @@
 .hero {
-    padding-top: 1.5rem;
-    padding-bottom: 2rem;
-    @media (min-width: 600px) {
-        padding-top: 2.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+
+  @media (min-width: 600px) {
+    padding-top: 2.5rem;
+  }
+
+  p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  &--cta__link {
+    @include bold;
+    color: $font-base;
+    padding-top: 2rem;
+    display: inline-block;
+    text-decoration: none;
+
+    &:visited {
+      color: $font-base;
+    }
+  }
+
+  &--event {
+    padding-top: 6rem;
+
+    &__info {
+      line-height: 1.3;
     }
 
-    p:last-of-type {
-        margin-bottom: 0;
+    .cost {
+      padding: 1rem 0;
     }
-
-    &--cta__link {
-        @include bold;
-        color: $font-base;
-        padding-top: 2rem;
-        display: inline-block;
-        text-decoration: none;
-        &:visited {
-            color: $font-base;
-        }
-    }
-
-    &--event {
-        padding-top: 6rem;
-        &__info {
-            line-height: 1.3;
-        }
-        .cost {
-            padding: 1rem 0;
-        }
-    }
+  }
 }
