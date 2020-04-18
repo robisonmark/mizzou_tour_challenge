@@ -1,8 +1,8 @@
 "use strict";
 
-var _index = _interopRequireDefault(require("./router/index"));
+var _interopRequireDefault = require("D:\\markrobison\\sites\\mizzou_tour_challenge\\node_modules\\@babel\\runtime/helpers/interopRequireDefault");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var _index = _interopRequireDefault(require("./router/index"));
 
 (0, _index["default"])();
 //# sourceMappingURL=main.js.map

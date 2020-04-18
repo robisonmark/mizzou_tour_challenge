@@ -1,23 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Favicon -->
-  <meta name="msapplication-TileColor" content="#1F6383">
-  <meta name="theme-color" content="#1F6383">
-
-  <link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">
-  <link rel="stylesheet" type="text/css" href="/css/styles.css">
-
-  <!-- <script type="text/javascript" src="/js/main.js"></script> -->
-
-  <title>Missouri Tourism | Register Road Show</title>
-</head>
-
-<body>
+<template>
   <div id="app" class="page-registration">
     <header>
       <h1>Road Show Registration</h1>
@@ -201,6 +182,16 @@
       </form>
     </main>
   </div>
-</body>
+</template>
 
-</html>
+<script>
+
+export default {
+  name: 'Home',
+  data () {
+    return {
+
+    }
+  }
+}
+</script>

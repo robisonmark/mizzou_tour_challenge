@@ -1,1 +1,1 @@
-{"version":3,"sources":["main.js"],"names":[],"mappings":";;AAAA;;;;AAEA","sourcesContent":["import router from './router/index'\r\n\r\nrouter()\r\n"],"file":"main.js"}
+{"version":3,"sources":["main.js"],"names":[],"mappings":";;;;AAAA;;AAEA","sourcesContent":["import router from './router/index'\r\n\r\nrouter()\r\n"],"file":"main.js"}
