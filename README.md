@@ -2,7 +2,7 @@
 This repo has been designed as a challenge for my skills.
 Varied skills are displayed through different branchs:
 
-* master - Vuejs, with a static api pulling from JSON files, SCSS, eslint, and font-awesome
+* master - Vuejs, with a static api pulling from JSON files, SCSS, eslint, font-awesome, and unit tests
 * feature/hardcoded - built with static content, gulpfile to compile SCSS, move images and run a mock server.
 * feature/vue - Same as master
 
