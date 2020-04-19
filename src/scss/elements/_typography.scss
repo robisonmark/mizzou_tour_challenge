@@ -7,13 +7,8 @@ html {
   $min-vw: 600px; // Minimum viewport width for dynamic font
   $max-vw: 1240px; // Maximum viewport width for dynamic font
 
-  font-size: calc(
-    (
-        (100vw - #{$min-vw}) / (#{strip-unit($max-vw)} - #{strip-unit($min-vw)}) *
-          (#{strip-unit($max-fs)} - #{strip-unit($min-fs)})
-      ) + #{$min-fs}
-  );
-  font-size: 15px;
+  // font-size: calc(((100vw - #{$min-vw}) / (#{strip-unit($max-vw)} - #{strip-unit($min-vw)}) *(#{strip-unit($max-fs)} - #{strip-unit($min-fs)})) + #{$min-fs});
+  font-size: 16px;
   color: $font-base;
   @include montserrat;
   *,
@@ -30,18 +25,8 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
   line-height: 1.33;
   margin-top: 0;
   margin-bottom: 0;

@@ -1,7 +1,7 @@
 /*
   This file includes:
     base element styles,
-    Bootstrap Grid v4 style,
+    Grid Elements based off Bootstrap Grid v4 style,
 */
 
 img,
@@ -69,6 +69,13 @@ button {
   -webkit-appearance: none;
   border: 0;
   text-decoration: none; //added for button styles
+  transition: .1s all cubic-bezier(0.6, -0.28, 0.735, 0.045);
+
+  &:hover {
+    background-color: darken($accent-green, 10%);
+    box-shadow: -2px 4px 17px -6px rgba(0,0,0,0.75);
+    transition: .1s all cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  }
 
   &[type="submit"] {
     border-radius: 4px;

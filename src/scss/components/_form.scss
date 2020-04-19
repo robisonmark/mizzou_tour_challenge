@@ -59,7 +59,8 @@ form {
       }
 
       &:focus,
-      &:not(:placeholder-shown) {
+      &:not(.select):not(:placeholder-shown),
+      &.select.filled {
         border-bottom: 2px solid $accent-green;
         outline: 0;
         box-shadow: none;

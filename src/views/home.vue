@@ -33,13 +33,13 @@
           </template>
 
           <template v-else-if="section.type === 'img'">
-            <img :src="section.content" :class="[section.modifier ? section.modifier : '']" :alt="section.alt" />
+            <img :src="publicPath + section.content" :class="[section.modifier ? section.modifier : '']" :alt="section.alt" />
           </template>
 
         </div>
       </template>
 
-      <div class="where">
+      <div class="where" id="events">
         <template v-if="events.length >= 1">
           <div class="event" v-for="event in events" :key="event.slug">
             <h4 class="event--date">{{event.eventDate}}</h4>
@@ -85,6 +85,7 @@ export default {
   name: 'home',
   data () {
     return {
+      publicPath: process.env.BASE_URL,
       page: {
         pageTitle: '',
         pageHero: {
@@ -125,7 +126,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .event {
+.event {
   margin-top: 2rem;
   margin-bottom: 4rem;
   border-top: 4px $accent-green solid;
@@ -211,6 +212,8 @@ export default {
       font-size: .8rem;
       background-color: $address-back;
       padding: 1rem;
+      max-width: 11rem;
+      width: 100%;
     }
     &__name {
       @include medium;
@@ -218,10 +221,12 @@ export default {
 
       @media (min-width: 600px) {
         padding: 0;
+        margin-bottom: 1rem;
       }
     }
     .address {
       @include light;
+      line-height: 1.3;
     }
   }
 }

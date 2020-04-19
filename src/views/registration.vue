@@ -30,7 +30,7 @@
         </div>
       </div>
 
-      <form name="registration-form" action="submitRegistration" @submit.prevent.stop>
+      <form name="registration-form" @submit.prevent.stop>
         <div class="light">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor
         </div>
@@ -38,6 +38,13 @@
         <div class="required"><strong>*Required Field</strong></div>
 
         <h2>Attendee Information</h2>
+
+        <div class="alert" v-if="showAlert">
+          The following fields are required: <font-awesome-icon :icon="['fas', 'times']" class="close" @click.prevent.stop="showAlert = false"></font-awesome-icon>
+          <div class="errorItem" v-for="(error, key) in errors" :key="key">
+            {{error.replace(/_/g, ' ')}}
+          </div>
+        </div>
 
         <fieldset>
           <legend>Personal Information</legend>
@@ -87,7 +94,7 @@
             </div>
             <div class="form-group col col-sm-3">
               <div class="floatLabel--wrap">
-                <select id="state" v-model="register.state" class="select floatLabel--input">
+                <select id="state" v-model="register.state" class="select floatLabel--input" :class="[register.state !== '' ? 'filled' : '']">
                   <option value=""></option>
                   <option value="AL">Alabama</option>
                   <option value="AK">Alaska</option>
@@ -181,16 +188,33 @@
         </fieldset>
       </form>
     </main>
+
+    <modal v-if="showModal">
+      <div slot="header">
+        We Look Forward to Seeing You
+      </div>
+
+      <div slot="body">
+        <div v-if="register.payment === 'cc'">
+          Thank you for registering to join us on {{event.eventDate}}.  You will now be taken to you another page to enter your payment information.
+        </div>
+        <div v-else>
+          Thank you for registering. We will see you on {{event.eventDate}}.
+        </div>
+      </div>
+    </modal>
   </div>
 </template>
 
 <script>
 import Api from '@/api/endpoints.js'
+import modal from '@/components/modal'
 
 export default {
   name: 'register',
   data () {
     return {
+      errors: [],
       event: {
         eventSlug: '',
         eventName: '',
@@ -219,22 +243,74 @@ export default {
         zip: '',
         payment: ''
       },
+      showAlert: false,
       showModal: false
     }
   },
+  components: {
+    modal
+  },
   created () {
     this.initEvent()
+
+    this.$on('close', () => {
+      this.showModal = false
+    })
   },
   methods: {
     initEvent () {
       Api.getEvent(this.$route.params.eventSlug).then(response => {
-        console.log(response)
         this.event = response.data
       })
     },
     submitRegistration () {
-      this.showModal = true
+      if (this.validate()) {
+        this.showModal = true
+      } else {
+        this.showAlert = true
+      }
+    },
+    validate () {
+      console.log('validating')
+      this.errors.length = 0
+      let returnValue = true
+
+      const fields = Object.keys(this.register)
+
+      console.log(fields)
+
+      fields.forEach(field => {
+        if (this.register[field] === '') {
+          if (field !== 'address2') {
+            this.errors.push(field)
+            returnValue = false
+          }
+        }
+      })
+      return returnValue
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.alert {
+  width: 100%;
+  border-radius: 4px;
+  z-index: 2;
+  padding: 2rem 1rem;
+  color: rgb(255, 82, 82);
+  background-color: rgba(255, 82, 82, .22);
+  position: relative;
+  .close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+  }
+  .errorItem {
+    margin-left: 2rem;
+    line-height: 1.3;
+    text-transform: capitalize;
+  }
+}
+</style>

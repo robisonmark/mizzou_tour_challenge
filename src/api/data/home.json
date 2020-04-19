@@ -52,7 +52,7 @@
             },
             {
                 "type": "img",
-                "content": "/images/road-show-logo.png",
+                "content": "images/road-show-logo.png",
                 "modifier": "road-show-logo",
                 "alt": "Missouri Road Show Logo"
             },
