@@ -1,0 +1,32 @@
+$font-base: #151515;
+$font-gray: #646464;
+$white: #FFFFFF;
+$accent-green: #3D9965;
+$accent-blue: #006487;
+$background-gray: #F0F0F0;
+$address-back: #FAFAFA;
+
+// Typography Mixins
+@mixin bebas {
+  font-family: "Bebas Neue", cursive;
+}
+
+@mixin montserrat {
+  font-family: "Montserrat", sans-serif;
+}
+
+@mixin light {
+  font-weight: 300;
+}
+
+@mixin medium {
+  font-weight: 500;
+}
+
+@mixin semibold {
+  font-weight: 600;
+}
+
+@mixin bold {
+  font-weight: 700;
+}

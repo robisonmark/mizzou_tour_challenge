@@ -1,113 +1,228 @@
 <template>
-  <div class="home">
+  <div class="page-home">
     <header>
-      <h1>2020 Regional Tourism Meetings</h1>
+      <h1>{{page.pageTitle}}</h1>
     </header>
     <main>
       <div class="hero hero-content">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit
-          amet tempor nibh finibus et. Aenean eu enim justo. Vestibulum aliquam hendrerit molestie.
-          Mauris malesuada nisi sit amet augue accumsan tincidunt. Maecenas tincidunt, velit ac
-          porttitor pulvinar, tortor eros facilisis libero, vitae commodo nunc quam et ligula. Ut
-          nec ipsum sapien. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-        </p>
+      <template v-for="(item, index) in page.pageHero.content">
+        <template v-if="item.type === 'p'">
+          <p v-html="item.content" :key="index"></p>
+        </template>
+      </template>
 
-        <p>
-          Integer id nisi nec nulla luctus lacinia non eu turpis. Etiam in ex imperdiet justo
-          tincidunt egestas. Ut porttitor urna ac augue cursus tincidunt sit amet sed orci. Aenean
-          eu enim justo. Vestibulum aliquam hendrerit molestie. Mauris malesuada nisi sit amet augue
-          accumsan tincidunt.
-        </p>
-
-        <a href="" class="hero--cta__link">See Agenda ></a>
+        <a :href="page.pageHero.cta.link" class="hero--cta__link">{{page.pageHero.cta.text}}  <font-awesome-icon v-if="page.pageHero.cta.icon" :icon="['fas', page.pageHero.cta.icon]"></font-awesome-icon></a>
       </div>
 
-      <div class="who">
-        <h2>Who Should Attend</h2>
+      <template v-if="page.contentBlocks.length >= 1">
+        <div v-for="(section, index) in page.contentBlocks" :key="index">
+          <template v-if="section.type === 'header'">
+            <h2 v-html="section.content" :class="[section.modifier ? section.modifier : '']"></h2>
+          </template>
 
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit
-          amet tempor nibh finibus et.
-        </p>
+          <template v-else-if="section.type === 'p'">
+            <p v-html="section.content" :class="[section.modifier ? section.modifier : '']"></p>
+          </template>
 
-        <ul>
-          <li>Lorem ipsum dolor sit amet</li>
-          <li>Consectetur adipiscing elit</li>
-          <li>Maecenas varius tortor nibh, sit amet</li>
-          <li>Tempor nibh finibus et.</li>
-          <li>Mauris malesuada nisi sit amet augue accumsan tincidunt.</li>
-        </ul>
-      </div>
+          <template v-else-if="section.type === 'list'">
+            <ul>
+              <li v-for="(item, key) in section.content" :key="key" :class="[section.modifier ? section.modifier : '']">
+                {{item}}
+              </li>
+            </ul>
+          </template>
 
-      <div class="when">
-        <h2>When And Where</h2>
-        <p>
-          Aenean eu enim justo. Vestibulum aliquam hendrerit molestie. Mauris malesuada nisi sit
-          amet augue accumsan tincidunt. Aenean eu enim justo. Vestibulum aliquam hendrerit
-          molestie.
-        </p>
+          <template v-else-if="section.type === 'img'">
+            <img :src="section.content" :class="[section.modifier ? section.modifier : '']" :alt="section.alt" />
+          </template>
 
-        <!-- <div class="img--con"> -->
-        <img
-          src="../images/road-show-logo.png"
-          class="road-show-logo"
-          alt="Missouri Road Show Logo"
-        />
-        <!-- </div> -->
-
-        <p class="semibold">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit
-          amet tempor nibh finibus et. Aenean eu enim justo. Vestibulum aliquam
-        </p>
-      </div>
+        </div>
+      </template>
 
       <div class="where">
-        <div class="event">
-          <h4 class="event--date">March 13, 2020</h4>
-          <div class="event--card">
-            <div class="event--map">
-              <div class="event--day">
-                <!-- <div class="event--day__month">Mar</div>  -->
-                <!-- <div class="event--day__day">13</div> -->
-                Mar
-                <div class="event--day__day">13</div>
-              </div>
-            </div>
-
-            <div class="event--card__bottom">
-              <div class="event--register">
-                <div class="region">Central Missouri</div>
-                <div class="locationName">Lake of the Ozarks</div>
-                <div class="time">8:00 a.m.</div>
-
-                <a class="btn" href="btn">Register</a>
+        <template v-if="events.length >= 1">
+          <div class="event" v-for="event in events" :key="event.slug">
+            <h4 class="event--date">{{event.eventDate}}</h4>
+            <div class="event--card">
+              <div class="event--map" :style="{ 'background-image': 'url(' + event.location.mapLink + ')' }">
+                <div class="event--day">
+                  {{splitDateAbbr(event.eventDateAbbr)[0]}}
+                  <div class="event--day__day">{{splitDateAbbr(event.eventDateAbbr)[1]}}</div>
+                </div>
               </div>
 
-              <div class="event--address">
-                <div class="event--address__name">Inn at Grand Glaize</div>
+              <div class="event--card__bottom">
+                <div class="event--register">
+                  <div class="region">{{event.eventRegion}}</div>
+                  <div class="eventName">{{event.eventName}}</div>
+                  <div class="time">{{event.eventDate}}</div>
 
-                <div class="address">
-                  <div class="address-lineOne">5142 Osage Beach Pkwy</div>
-                  <div class="address-lineTwo">Osage Beach, MO</div>
+                  <router-link class="btn" :to="{ name: 'register', params: { eventSlug: event.eventSlug } }">Register</router-link>
+                </div>
+
+                <div class="event--address">
+                  <div class="event--address__name">{{event.location.locationName}}</div>
+
+                  <div class="address">
+                    <div class="address-lineOne">{{event.location.address1}}</div>
+                    <div class="address-lineOne">{{event.location.address2}}</div>
+                    <div class="address-lineTwo">{{event.location.city}}, {{event.location.state}}</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </template>
       </div>
     </main>
   </div>
 </template>
 
 <script>
+import Api from '@/api/endpoints.js'
 
 export default {
-  name: 'Home',
+  name: 'home',
   data () {
     return {
-
+      page: {
+        pageTitle: '',
+        pageHero: {
+          content: [],
+          cta: {
+            link: '',
+            text: '',
+            icon: ''
+          }
+        },
+        contentBlocks: []
+      },
+      events: []
+    }
+  },
+  computed: {
+  },
+  created () {
+    this.initEvents()
+    this.initPage()
+  },
+  methods: {
+    initEvents () {
+      Api.getEventsList().then(response => {
+        this.events = response.data
+      })
+    },
+    initPage () {
+      Api.getPage().then(response => {
+        this.page = response.data
+      })
+    },
+    splitDateAbbr (date) {
+      return date.split(' ')
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .event {
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  border-top: 4px $accent-green solid;
+  h4 {
+    margin: 1rem 0;
+  }
+
+  &--card {
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+    @media (min-width: 600px) {
+      flex-direction: row;
+    }
+
+    &__bottom {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      @media (min-width: 600px) {
+        flex-direction: row;
+        padding-top: 0;
+        padding-right: 0;
+        padding-bottom: 0;
+        justify-content: space-between;
+        flex-grow: 1;
+      }
+    }
+  }
+
+  &--map {
+    background-image: url('../images/map.png');
+    background-position: center center;
+    background-size: cover;
+    height: 10rem;
+    width: 100%;
+    @media (min-width: 600px) {
+      max-width: 12.2rem;
+      height: 10.8rem;
+    }
+  }
+
+  &--day {
+    background-color: $accent-blue;
+    color: $white;
+    @include bold;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    width: 4.33rem;
+    height: 4.33rem;
+    &__day {
+      font-size: 2.3rem;
+      line-height: 1;
+    }
+  }
+
+  &--register {
+    @media (min-width: 600px) {
+      padding: 1rem;
+    }
+
+    .region {
+      @include medium;
+      line-height: 1;
+    }
+    .eventName {
+      @include bold;
+      line-height: 1;
+      font-size: 1.33rem;
+    }
+    .time {
+      @include light;
+      padding: .8rem 0;
+    }
+  }
+
+  &--address {
+    font-size: 1rem;
+
+    @media (min-width: 600px) {
+      font-size: .8rem;
+      background-color: $address-back;
+      padding: 1rem;
+    }
+    &__name {
+      @include medium;
+      padding: 2rem 0 1rem;
+
+      @media (min-width: 600px) {
+        padding: 0;
+      }
+    }
+    .address {
+      @include light;
+    }
+  }
+}
+</style>

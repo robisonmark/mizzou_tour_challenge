@@ -5,15 +5,15 @@
     </header>
     <main>
       <div class="hero hero--event container">
-        <h2>Central Missouri Road Show</h2>
+        <h2>{{event.eventRegion}} Road Show</h2>
         <div class="row">
           <div class="col">
 
             <div class="hero--event__info">
-              <div><strong>March 13, 2020</strong></div>
-              <div><strong>Lake of the Ozarks</strong></div>
-              <div class="light">8:00 a.m.</div>
-              <div class="light">Inn at Grand Glaize</div>
+              <div><strong>{{event.eventDate}}</strong></div>
+              <div><strong>{{event.eventName}}</strong></div>
+              <div class="light">{{event.eventTime}}</div>
+              <div class="light">{{event.location.locationName}}</div>
             </div>
 
             <div class="cost">
@@ -21,7 +21,7 @@
               <p>$20</p>
             </div>
 
-            <a href="/" class="return">Back to all meetings</a>
+            <router-link :to="{ name: 'home' }" class="return">Back to all meetings</router-link>
           </div>
 
           <div class="col">
@@ -30,7 +30,7 @@
         </div>
       </div>
 
-      <form name="registration-form" action="submitRegistration">
+      <form name="registration-form" action="submitRegistration" @submit.prevent.stop>
         <div class="light">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor
         </div>
@@ -43,12 +43,12 @@
           <legend>Personal Information</legend>
 
           <div class="form-group floatLabel--wrap">
-            <input id="given-name" type="text" class="floatLabel--input" placeholder="First Name*" required />
+            <input id="given-name" v-model="register.first_name" type="text" class="floatLabel--input" placeholder="First Name*" required />
             <label for="given-name" class="floating-label">First Name*</label>
           </div>
 
           <div class="form-group floatLabel--wrap">
-            <input id="email" type="email" placeholder="Email*" class="floatLabel--input" required />
+            <input id="email" v-model="register.email" type="email" placeholder="Email*" class="floatLabel--input" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
             <label for="email" class="floating-label">Email*</label>
           </div>
         </fieldset>
@@ -56,12 +56,12 @@
         <fieldset>
           <legend>Company Information</legend>
           <div class="form-group floatLabel--wrap">
-            <input id="title" type="text" class="floatLabel--input" placeholder="Title*" required />
+            <input id="title" v-model="register.title" type="text" class="floatLabel--input" placeholder="Title*" required />
             <label for="title" class="floating-label">Title*</label>
           </div>
 
           <div class="form-group floatLabel--wrap">
-            <input id="company" type="text" class="floatLabel--input" placeholder="Company*" required />
+            <input id="company" v-model="register.company" type="text" class="floatLabel--input" placeholder="Company*" required />
             <label for="company" class="floating-label">Company*</label>
           </div>
         </fieldset>
@@ -70,24 +70,24 @@
           <legend>Address</legend>
 
           <div class="form-group floatLabel--wrap">
-            <input id="address1" type="text" class="floatLabel--input" placeholder="Address Line 1*" required />
+            <input id="address1" v-model="register.address1" type="text" class="floatLabel--input" placeholder="Address Line 1*" required />
             <label for="address1" class="floating-label">Address Line 1*</label>
           </div>
 
           <div class="form-group floatLabel--wrap">
-            <input id="address2" type="text" class="floatLabel--input" placeholder="Address Line 2*" required />
+            <input id="address2" v-model="register.address2" type="text" class="floatLabel--input" placeholder="Address Line 2*" required />
             <label for="address2" class="floating-label">Address Line 2</label>
           </div>
           <div class="form-row">
             <div class="form-group col col-sm-6">
               <div class="floatLabel--wrap">
-                <input id="city" type="text" class="floatLabel--input" placeholder="City*" required />
+                <input id="city" v-model="register.city" type="text" class="floatLabel--input" placeholder="City*" required />
                 <label for="city" class="floating-label">City*</label>
               </div>
             </div>
             <div class="form-group col col-sm-3">
               <div class="floatLabel--wrap">
-                <select id="state" class="select floatLabel--input">
+                <select id="state" v-model="register.state" class="select floatLabel--input">
                   <option value=""></option>
                   <option value="AL">Alabama</option>
                   <option value="AK">Alaska</option>
@@ -146,7 +146,7 @@
             </div>
             <div class="form-group col col-sm-3">
               <div class="floatLabel--wrap">
-                <input id="zip" type="number" pattern="(\d{5}([\-]\d{4})?)" class="floatLabel--input" placeholder="Zip*"
+                <input id="zip" v-model="register.zip" type="number" pattern="(\d{5}([\-]\d{4})?)" class="floatLabel--input" placeholder="Zip*"
                   required />
                 <label for="zip" class="floating-label">Zip*</label>
               </div>
@@ -165,11 +165,11 @@
             <a href="tel: 573-751-4133">573-751-4133</a>.</div>
 
           <div class="paymentGroup">
-            <input id="creditcard" type="radio" name="payment" />
+            <input id="creditcard" v-model="register.payment" type="radio" value="cc" name="payment" />
             <label for="creditcard">Credit Card</label>
           </div>
           <div class="paymentGroup">
-            <input id="invoice" type="radio" name="payment" />
+            <input id="invoice" v-model="register.payment" type="radio" value="invoice" name="payment" />
             <label for="invoice">Invoice</label>
           </div>
         </fieldset>
@@ -177,7 +177,7 @@
         <fieldset>
           <legend>Submit</legend>
 
-          <button type="submit">Submit</button>
+          <button type="submit" @click="submitRegistration()">Submit</button>
         </fieldset>
       </form>
     </main>
@@ -185,12 +185,55 @@
 </template>
 
 <script>
+import Api from '@/api/endpoints.js'
 
 export default {
-  name: 'Home',
+  name: 'register',
   data () {
     return {
-
+      event: {
+        eventSlug: '',
+        eventName: '',
+        eventTime: '',
+        eventDate: '',
+        eventDateAbbr: '',
+        eventRegion: '',
+        location: {
+          locationName: '',
+          address1: '',
+          address2: '',
+          city: '',
+          state: '',
+          mapLink: 'a'
+        }
+      },
+      register: {
+        first_name: '',
+        email: '',
+        title: '',
+        company: '',
+        address1: '',
+        address2: '',
+        city: '',
+        state: '',
+        zip: '',
+        payment: ''
+      },
+      showModal: false
+    }
+  },
+  created () {
+    this.initEvent()
+  },
+  methods: {
+    initEvent () {
+      Api.getEvent(this.$route.params.eventSlug).then(response => {
+        console.log(response)
+        this.event = response.data
+      })
+    },
+    submitRegistration () {
+      this.showModal = true
     }
   }
 }

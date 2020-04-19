@@ -1,0 +1,84 @@
+{
+    "data": [
+        {
+            "eventSlug": "lake_of_the_ozarks",
+            "eventName": "Lake of the Ozarks",
+            "eventTime": "8:00 a.m.",
+            "eventDate": "March 13, 2020",
+            "eventDateAbbr": "Mar 13",
+            "eventRegion": "Central Missouri",
+            "location": {
+                "locationName": "Inn at Grand Glaize",
+                "address1": "5142 Osage Beach Pkwy",
+                "address2": "",
+                "city": "Osage Beach",
+                "state": "MO",
+                "mapLink": "../images/map.png"
+            }
+        },
+        {
+            "eventSlug": "hannibal",
+            "eventName": "Hannibal",
+            "eventTime": "8:00 a.m.",
+            "eventDate": "March 20, 2020",
+            "eventDateAbbr": "Mar 20",
+            "eventRegion": "Northwest Missouri",
+            "location": {
+                "locationName": "Holiday Inn Express",
+                "address1": "120 Shinn Lane",
+                "address2": "",
+                "city": "Hannibal",
+                "state": "MO",
+                "mapLink": "../images/map.png"
+            }
+        },
+        {
+            "eventSlug": "st_joseph",
+            "eventName": "St. Joseph",
+            "eventTime": "8:00 a.m.",
+            "eventDate": "March 27, 2020",
+            "eventDateAbbr": "Mar 27",
+            "eventRegion": "Northwest Missouri",
+            "location": {
+                "locationName": "Remington Nature Center",
+                "address1": "1502 McArthur Drive",
+                "address2": " #7500",
+                "city": "St. Joseph",
+                "state": "MO",
+                "mapLink": "../images/map.png"
+            }
+        },
+        {
+            "eventSlug": "branson",
+            "eventName": "Branson",
+            "eventTime": "8:00 a.m.",
+            "eventDate": "April 3, 2020",
+            "eventDateAbbr": "April 3",
+            "eventRegion": "Southwest Missouri",
+            "location": {
+                "locationName": "Branson Chamber & CVB Center",
+                "address1": "4100 Gretna Rd",
+                "address2": "",
+                "city": "Branson",
+                "state": "MO",
+                "mapLink": "../images/map.png"
+            }
+        },
+        {
+            "eventSlug": "ste_genevieve",
+            "eventName": "Ste. Genevieve",
+            "eventTime": "8:00 a.m.",
+            "eventDate": "April 10, 2020",
+            "eventDateAbbr": "April 10",
+            "eventRegion": "Southeast Missouri",
+            "location": {
+                "locationName": "DeBourg Center",
+                "address1": "305 Merchant St.",
+                "address2": "",
+                "city": "Ste. Genevieve",
+                "state": "MO",
+                "mapLink": "../images/map.png"
+            }
+        }
+    ]
+}

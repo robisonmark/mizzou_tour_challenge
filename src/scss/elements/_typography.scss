@@ -1,30 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;500;600;700&display=swap");
 
-// Typography Mixins
-@mixin bebas {
-  font-family: "Bebas Neue", cursive;
-}
-
-@mixin montserrat {
-  font-family: "Montserrat", sans-serif;
-}
-
-@mixin light {
-  font-weight: 300;
-}
-
-@mixin medium {
-  font-weight: 500;
-}
-
-@mixin semibold {
-  font-weight: 600;
-}
-
-@mixin bold {
-  font-weight: 700;
-}
-
 // Global Typography
 html {
   $min-fs: 15px;
