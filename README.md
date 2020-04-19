@@ -2,7 +2,7 @@
 This repo has been designed as a challenge for my skills.
 Varied skills are displayed through different branchs:
 
-* master - Vuejs, with a static api pulling from JSON files
+* master - Vuejs, with a static api pulling from JSON files, SCSS, eslint, and font-awesome
 * feature/hardcoded - built with static content, gulpfile to compile SCSS, move images and run a mock server.
 * feature/vue - Same as master
 
@@ -13,7 +13,7 @@ Choose the branch that you want to see:
 `
 git pull origin <branch>
 or
-git pull origin feature <branch>
+git pull origin feature/<branch>
 `
 
 You can use npm or yarn.  If you choose to use yarn then replace npm with yarn in the commands below
