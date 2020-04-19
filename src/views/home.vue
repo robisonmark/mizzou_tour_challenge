@@ -5,13 +5,13 @@
     </header>
     <main>
       <div class="hero hero-content">
-      <template v-for="(item, index) in page.pageHero.content">
-        <template v-if="item.type === 'p'">
-          <p v-html="item.content" :key="index"></p>
+        <template v-for="(item, index) in page.pageHero.content">
+          <template v-if="item.type === 'p'">
+            <p v-html="item.content" :key="index"></p>
+          </template>
         </template>
-      </template>
 
-        <a :href="page.pageHero.cta.link" class="hero--cta__link">{{page.pageHero.cta.text}}  <font-awesome-icon v-if="page.pageHero.cta.icon" :icon="['fas', page.pageHero.cta.icon]"></font-awesome-icon></a>
+        <a :href="page.pageHero.cta.link" class="hero--cta__link" @click.prevent="smoothScroll(page.pageHero.cta.link)">{{page.pageHero.cta.text}}  <font-awesome-icon v-if="page.pageHero.cta.icon" :icon="['fas', page.pageHero.cta.icon]"></font-awesome-icon></a>
       </div>
 
       <template v-if="page.contentBlocks.length >= 1">
@@ -107,6 +107,17 @@ export default {
     this.initEvents()
     this.initPage()
   },
+  updated () {
+    this.$nextTick(() => {
+      if (Object.prototype.hasOwnProperty.call(this.$route, 'hash')) {
+        if (this.$route.hash !== '') {
+          var elmnt = document.querySelector(this.$route.hash)
+          elmnt.scrollIntoView()
+        }
+      }
+      // window.scrollTo(this.$route.hash)
+    })
+  },
   methods: {
     initEvents () {
       Api.getEventsList().then(response => {
@@ -118,6 +129,23 @@ export default {
         this.page = response.data
       })
     },
+    smoothScroll (hash) {
+      history.pushState(null, null, '/#events')
+      window.setTimeout(() => {
+        const elmnt = document.querySelector(hash).getBoundingClientRect().top
+        let scrollPos = 0
+        function smoothScroll () {
+          if (scrollPos >= (elmnt - 25)) {
+            window.clearInterval(scroll)
+          } else {
+            scrollPos = window.pageYOffset + 25
+          }
+
+          window.scrollTo(0, scrollPos)
+        }
+        const scroll = window.setInterval(smoothScroll, 10)
+      }, 10)
+    },
     splitDateAbbr (date) {
       return date.split(' ')
     }
@@ -126,108 +154,111 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.event {
-  margin-top: 2rem;
-  margin-bottom: 4rem;
-  border-top: 4px $accent-green solid;
-  h4 {
-    margin: 1rem 0;
+  .page-home {
+    scroll-behavior: smooth;
   }
-
-  &--card {
-    background-color: $white;
-    display: flex;
-    flex-direction: column;
-    @media (min-width: 600px) {
-      flex-direction: row;
+  .event {
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+    border-top: 4px $accent-green solid;
+    h4 {
+      margin: 1rem 0;
     }
 
-    &__bottom {
-      padding: 1.5rem;
+    &--card {
+      background-color: $white;
       display: flex;
       flex-direction: column;
       @media (min-width: 600px) {
         flex-direction: row;
-        padding-top: 0;
-        padding-right: 0;
-        padding-bottom: 0;
-        justify-content: space-between;
-        flex-grow: 1;
+      }
+
+      &__bottom {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        @media (min-width: 600px) {
+          flex-direction: row;
+          padding-top: 0;
+          padding-right: 0;
+          padding-bottom: 0;
+          justify-content: space-between;
+          flex-grow: 1;
+        }
       }
     }
-  }
 
-  &--map {
-    background-image: url('../images/map.png');
-    background-position: center center;
-    background-size: cover;
-    height: 10rem;
-    width: 100%;
-    @media (min-width: 600px) {
-      max-width: 12.2rem;
-      height: 10.8rem;
-    }
-  }
-
-  &--day {
-    background-color: $accent-blue;
-    color: $white;
-    @include bold;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: center;
-    width: 4.33rem;
-    height: 4.33rem;
-    &__day {
-      font-size: 2.3rem;
-      line-height: 1;
-    }
-  }
-
-  &--register {
-    @media (min-width: 600px) {
-      padding: 1rem;
-    }
-
-    .region {
-      @include medium;
-      line-height: 1;
-    }
-    .eventName {
-      @include bold;
-      line-height: 1;
-      font-size: 1.33rem;
-    }
-    .time {
-      @include light;
-      padding: .8rem 0;
-    }
-  }
-
-  &--address {
-    font-size: 1rem;
-
-    @media (min-width: 600px) {
-      font-size: .8rem;
-      background-color: $address-back;
-      padding: 1rem;
-      max-width: 11rem;
+    &--map {
+      background-image: url('../images/map.png');
+      background-position: center center;
+      background-size: cover;
+      height: 10rem;
       width: 100%;
+      @media (min-width: 600px) {
+        max-width: 12.2rem;
+        height: 10.8rem;
+      }
     }
-    &__name {
-      @include medium;
-      padding: 2rem 0 1rem;
+
+    &--day {
+      background-color: $accent-blue;
+      color: $white;
+      @include bold;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      justify-content: center;
+      width: 4.33rem;
+      height: 4.33rem;
+      &__day {
+        font-size: 2.3rem;
+        line-height: 1;
+      }
+    }
+
+    &--register {
+      @media (min-width: 600px) {
+        padding: 1rem;
+      }
+
+      .region {
+        @include medium;
+        line-height: 1;
+      }
+      .eventName {
+        @include bold;
+        line-height: 1;
+        font-size: 1.33rem;
+      }
+      .time {
+        @include light;
+        padding: .8rem 0;
+      }
+    }
+
+    &--address {
+      font-size: 1rem;
 
       @media (min-width: 600px) {
-        padding: 0;
-        margin-bottom: 1rem;
+        font-size: .8rem;
+        background-color: $address-back;
+        padding: 1rem;
+        max-width: 11rem;
+        width: 100%;
+      }
+      &__name {
+        @include medium;
+        padding: 2rem 0 1rem;
+
+        @media (min-width: 600px) {
+          padding: 0;
+          margin-bottom: 1rem;
+        }
+      }
+      .address {
+        @include light;
+        line-height: 1.3;
       }
     }
-    .address {
-      @include light;
-      line-height: 1.3;
-    }
   }
-}
 </style>

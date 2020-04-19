@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="page-registration">
+  <div class="page-registration">
     <header>
       <h1>Road Show Registration</h1>
     </header>
@@ -21,7 +21,7 @@
               <p>$20</p>
             </div>
 
-            <router-link :to="{ name: 'home' }" class="return">Back to all meetings</router-link>
+            <router-link id="return" :to="{ name: 'home', hash: '#events' }" class="return">Back to all meetings</router-link>
           </div>
 
           <div class="col">
@@ -82,7 +82,7 @@
           </div>
 
           <div class="form-group floatLabel--wrap">
-            <input id="address2" v-model="register.address2" type="text" class="floatLabel--input" placeholder="Address Line 2*" required />
+            <input id="address2" v-model="register.address2" type="text" class="floatLabel--input" placeholder="Address Line 2*" />
             <label for="address2" class="floating-label">Address Line 2</label>
           </div>
           <div class="form-row">
@@ -184,7 +184,7 @@
         <fieldset>
           <legend>Submit</legend>
 
-          <button type="submit" @click="submitRegistration()">Submit</button>
+          <button id="submitRegistration" type="submit" @click="submitRegistration()">Submit</button>
         </fieldset>
       </form>
     </main>
@@ -196,7 +196,8 @@
 
       <div slot="body">
         <div v-if="register.payment === 'cc'">
-          Thank you for registering to join us on {{event.eventDate}}.  You will now be taken to you another page to enter your payment information.
+          <p>Thank you for registering to join us on {{event.eventDate}}.</p>
+          <p>In {{countdown}}s you will be taken to you another page to enter your payment information.</p>
         </div>
         <div v-else>
           Thank you for registering. We will see you on {{event.eventDate}}.
@@ -214,6 +215,7 @@ export default {
   name: 'register',
   data () {
     return {
+      countdown: 10,
       errors: [],
       event: {
         eventSlug: '',
@@ -258,6 +260,18 @@ export default {
     })
   },
   methods: {
+    countDownTimer () {
+      if (this.countdown > 0) {
+        setTimeout(() => {
+          this.countdown -= 1
+          this.countDownTimer()
+        }, 1000)
+      } else {
+        window.open('https://www.visitmo.com/')
+        this.showModal = false
+        this.countdown = 10
+      }
+    },
     initEvent () {
       Api.getEvent(this.$route.params.eventSlug).then(response => {
         this.event = response.data
@@ -266,18 +280,16 @@ export default {
     submitRegistration () {
       if (this.validate()) {
         this.showModal = true
+        this.countDownTimer()
       } else {
         this.showAlert = true
       }
     },
     validate () {
-      console.log('validating')
       this.errors.length = 0
       let returnValue = true
 
       const fields = Object.keys(this.register)
-
-      console.log(fields)
 
       fields.forEach(field => {
         if (this.register[field] === '') {
