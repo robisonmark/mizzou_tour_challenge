@@ -8,7 +8,7 @@ html {
   $max-vw: 1240px; // Maximum viewport width for dynamic font
 
   // font-size: calc(((100vw - #{$min-vw}) / (#{strip-unit($max-vw)} - #{strip-unit($min-vw)}) *(#{strip-unit($max-fs)} - #{strip-unit($min-fs)})) + #{$min-fs});
-  font-size: 16px;
+  font-size: 15px;
   color: $font-base;
   @include montserrat;
   *,
