@@ -56,7 +56,7 @@
 
           <div class="form-group floatLabel--wrap">
             <input id="email" v-model="register.email" type="email" placeholder="Email*" class="floatLabel--input" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required />
-            <label for="email" class="floating-label">Email*</label>
+            <label for="email" class="floating-label">Email Address*</label>
           </div>
         </fieldset>
 
