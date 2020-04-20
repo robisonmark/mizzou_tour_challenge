@@ -26,7 +26,7 @@
             },
             {
                 "type": "p",
-                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor nibh finibus et.",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh:",
                 "modifier": false
             },
             {
@@ -47,7 +47,7 @@
             },
             {
                 "type": "p",
-                "content": "Aenean eu enim justo. Vestibulum aliquam hendrerit molestie. Mauris malesuada nisi sit amet augue accumsan tincidunt. Aenean eu enim justo. Vestibulum aliquam hendrerit molestie.",
+                "content": "Aenean eu enim justo. Vestibulum aliquam hendrerit molestie. Mauris malesuada nisi sit amet augue accumsan tincidunt. Aenean eu enim justo.",
                 "modifier": false
             },
             {

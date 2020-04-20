@@ -3,22 +3,6 @@
     base element styles,
     Grid Elements based off Bootstrap Grid v4 style,
 */
-
-img,
-.img--con {
-  &.road-show-logo{
-    width: calc(100% - 2rem);
-    max-width: 24rem;
-    display: block;
-    .page-home & {
-      margin: 2.33rem auto;
-    }
-    @media (max-width: 600px) {
-      margin: 4rem auto;
-    }
-  }
-}
-
 .container {
   width: calc(100% - 2rem); // changed with respect to outer padding
   padding-right: 1rem;
@@ -57,6 +41,26 @@ img,
   }
 }
 
+main {
+  margin-right: .5rem;
+  margin-left: .5rem;
+}
+
+img,
+.img--con {
+  &.road-show-logo{
+    width: calc(100% - 2rem);
+    max-width: 24rem;
+    display: block;
+    .page-home & {
+      margin: 2.33rem auto 4rem;
+    }
+    @media (max-width: 600px) {
+      margin: 4rem auto;
+    }
+  }
+}
+
 .btn,
 button {
   @include bold;
@@ -75,10 +79,6 @@ button {
     background-color: darken($accent-green, 10%);
     box-shadow: -2px 4px 17px -6px rgba(0,0,0,0.75);
     transition: .1s all cubic-bezier(0.6, -0.28, 0.735, 0.045);
-  }
-
-  &[type="submit"] {
-    border-radius: 4px;
   }
 }
 

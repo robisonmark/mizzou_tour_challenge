@@ -55,7 +55,7 @@
                 <div class="event--register">
                   <div class="region">{{event.eventRegion}}</div>
                   <div class="eventName">{{event.eventName}}</div>
-                  <div class="time">{{event.eventDate}}</div>
+                  <div class="time">{{event.eventTime}}</div>
 
                   <router-link class="btn" :to="{ name: 'register', params: { eventSlug: event.eventSlug } }">Register</router-link>
                 </div>
@@ -174,7 +174,6 @@ export default {
       }
 
       &__bottom {
-        padding: 1.5rem;
         display: flex;
         flex-direction: column;
         @media (min-width: 600px) {
@@ -217,6 +216,7 @@ export default {
     }
 
     &--register {
+      padding: 1.5rem;
       @media (min-width: 600px) {
         padding: 1rem;
       }
@@ -227,28 +227,29 @@ export default {
       }
       .eventName {
         @include bold;
-        line-height: 1;
+        line-height: 1.5;
         font-size: 1.33rem;
       }
       .time {
         @include light;
-        padding: .8rem 0;
+        padding: .3rem 0;
       }
     }
 
     &--address {
+      padding: 1.5rem;
       font-size: 1rem;
+      background-color: $address-back;
 
       @media (min-width: 600px) {
         font-size: .8rem;
-        background-color: $address-back;
         padding: 1rem;
         max-width: 11rem;
         width: 100%;
       }
       &__name {
         @include medium;
-        padding: 2rem 0 1rem;
+        padding-bottom: 1rem;
 
         @media (min-width: 600px) {
           padding: 0;

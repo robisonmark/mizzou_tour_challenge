@@ -1,6 +1,6 @@
 .hero {
   padding-top: 1.5rem;
-  padding-bottom: 2rem;
+  // padding-bottom: 2rem;
 
   @media (min-width: 600px) {
     padding-top: 2.5rem;
@@ -24,7 +24,7 @@
   }
 
   &--event {
-    padding-top: 6rem;
+    // padding-top: 6rem; // Assummed this is a Adobe XD mix up
 
     &__info {
       line-height: 1.3;

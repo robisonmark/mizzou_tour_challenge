@@ -4,11 +4,19 @@ form {
   margin-right: -1rem;
   padding: 2rem 1rem;
   box-sizing: border-box;
-
+  
+  .pre-form{
+    @include light();
+    
+    @media (min-width: 600px) {
+      @include medium();
+    }
+  }
+  
   .required {
     color: $font-gray;
-    margin-top: 1.66rem;
-    margin-bottom: 1.66rem;
+    margin-top: 1.6rem;
+    margin-bottom: -1rem;
   }
 
   fieldset {
@@ -70,28 +78,6 @@ form {
           @include bold();
         }
       }
-
-      // &:focus,
-      // &:not(.select):not(:placeholder-shown),
-      // &.select:focus {
-      //   border-bottom: 2px solid $accent-green;;
-      //   outline: 0;
-      //   box-shadow: none;
-      //   & + .floating-label {
-      //     transform: translate(1%, -17%) scale(.667);
-      //     color: $accent-green;
-      //     @include bold();
-      //   }
-      // }
-
-      // &.select {
-      //   option:checked {
-      //   // & + .floating-label {
-      //     transform: translate(1%, -17%) scale(.667);
-      //     color: $font-gray;
-      //     @include bold();
-      //   // }
-      // }
 
       &:valid {
         border-bottom: 1px solid $font-gray;

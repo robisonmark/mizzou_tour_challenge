@@ -4,7 +4,7 @@
       <h1>Road Show Registration</h1>
     </header>
     <main>
-      <div class="hero hero--event container">
+      <div class="hero hero--event">
         <h2>{{event.eventRegion}} Road Show</h2>
         <div class="row">
           <div class="col">
@@ -31,7 +31,7 @@
       </div>
 
       <form name="registration-form" @submit.prevent.stop>
-        <div class="light">
+        <div class="pre-form">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas varius tortor nibh, sit amet tempor
         </div>
 
@@ -52,6 +52,11 @@
           <div class="form-group floatLabel--wrap">
             <input id="given-name" v-model="register.first_name" type="text" class="floatLabel--input" placeholder="First Name*" required />
             <label for="given-name" class="floating-label">First Name*</label>
+          </div>
+
+          <div class="form-group floatLabel--wrap">
+            <input id="family-name" v-model="register.last_name" type="text" class="floatLabel--input" placeholder="Last Name*" required />
+            <label for="family-name" class="floating-label">Last Name*</label>
           </div>
 
           <div class="form-group floatLabel--wrap">
@@ -235,6 +240,7 @@ export default {
       },
       register: {
         first_name: '',
+        last_name: '',
         email: '',
         title: '',
         company: '',
